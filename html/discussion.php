@@ -6,13 +6,15 @@ session_start();
 include 'DB_connection.php';
 
 
-echo $_SESSION['id2'];
+echo "receiver id is ".$_SESSION['id2'];
+echo "<br>my id is ".$_SESSION['id'];
+
 if (!isset($_SESSION['id2'])){
 
     $receiver_id = $_GET['id'];
     $_SESSION['id2'] = $receiver_id;
 } else {
-    $receiver_id = $_SESSION['id2'];
+    $receiver_id =$_SESSION['id2'];
 }
 
 $sender_id = $_SESSION['id'];   

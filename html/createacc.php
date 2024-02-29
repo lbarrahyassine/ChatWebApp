@@ -41,7 +41,7 @@
 
 session_start(); 
 
-include_once "DB_connection.php";
+include "DB_connection.php";
 if (isset($_POST['submit']) ) {
 
     function validate($data){

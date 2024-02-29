@@ -23,6 +23,7 @@ if(isset($_POST['submit'])){
     if ($stmt->execute([ $message, $sender_id, $receiver_id])) {
         
         header("Location: discussion.php");
+        $sender_id = $_SESSION['id'];
         
     } else {
         
