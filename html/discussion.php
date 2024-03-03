@@ -6,8 +6,8 @@ session_start();
 include 'DB_connection.php';
 
 
-echo "receiver id is ".$_SESSION['id2'];
-echo "<br>my id is ".$_SESSION['id'];
+//echo "receiver id is ".$_SESSION['id2'];
+//echo "<br>my id is ".$_SESSION['id'];
 
 if (!isset($_SESSION['id2'])){
 
@@ -28,6 +28,7 @@ $sender_id = $_SESSION['id'];
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="discussion">
 <?php    
     // Get the messages between the current user and the selected user
 
@@ -38,22 +39,24 @@ $sender_id = $_SESSION['id'];
     $result = $stmt->get_result();
     
     while($row = $result->fetch_assoc()){
-        print_r($row);
+        //print_r($row);
         if ($row['destinateur']==$sender_id){
 
-            echo "<div class='mess_sent'>".$row['mess_text']."</div>";
+            echo "<div class='mess_sent'><span>".$row['mess_text']."</span></div>";
         }else {
-            echo "<div class='mess_rece'>".$row['mess_text']."</div>";
+            echo "<div class='mess_rece'><span>".$row['mess_text']."</span></div>";
         }
-        //echo $row['mess_text'] . "<br>";
+        
     }
 $stmt=null;
 ?>
     <br>
     <form method="POST" action="send_mess.php">
-        <textarea name="message" placeholder="Type your message here..."></textarea>
-        <input type="submit" name="submit" value="Send Message">
+        <textarea id="textarea" name="textarea" placeholder="Type your message here..."></textarea>
+        <input id="sendmess" type="submit" name="submit" value="Send Message">
     </form>
+
+    </div>
 
   
 </body>

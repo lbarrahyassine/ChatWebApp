@@ -26,35 +26,14 @@ $sender_id=$_SESSION['id'];
 <head>
   
     <title>User List</title>
-    <style>
-        
-        .user-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .user-list li {
-            margin-bottom: 5px;
-        }
-        .user-list li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.user-list li:hover {
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 
 <body>
 
-<h1>HOME</h1>
+<center><h1>HOME</h1></center>
 <h1><?php echo "hello ".$_SESSION['username'];?></h1>
 <br>
 <h1>User List</h1>

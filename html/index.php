@@ -25,7 +25,8 @@
     <br>
     <input type="password" name="password">
     <br>
-    <input type="submit" value="send" >
+    <br>
+    <input id="login" type="submit" value="login" >
   </form> 
 
   
@@ -35,7 +36,11 @@
 <a href="forgot_password.html">forgot password</a>
 
 </div>
-
+<?php
+if (isset($_GET['error'])) {
+    echo "<div class='error-message'><p>Error: " . $_GET['error'] . "</p></div>";
+}
+?>
 </body>
 
 </html>
