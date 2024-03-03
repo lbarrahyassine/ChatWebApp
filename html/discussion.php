@@ -52,8 +52,8 @@ $stmt=null;
 ?>
     <br>
     <form method="POST" action="send_mess.php">
-        <textarea id="textarea" name="textarea" placeholder="Type your message here..."></textarea>
-        <input id="sendmess" type="submit" name="submit" value="Send Message">
+        <textarea id="textarea" name="message" placeholder="Type your message here..."></textarea>
+        <input id="sendmess" type="submit" name="sdmessage" value="Send Message">
     </form>
 
     </div>

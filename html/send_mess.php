@@ -8,7 +8,7 @@ $receiver_id = $_SESSION['id2'];
 include 'DB_connection.php';
 
 
-if(isset($_POST['submit'])){
+if(isset($_POST['sdmessage'])){
     
     $message = $_POST['message'];
 
