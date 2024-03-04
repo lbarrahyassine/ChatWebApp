@@ -39,6 +39,7 @@
 <?php
 if (isset($_GET['error'])) {
     echo "<div class='error-message'><p>Error: " . $_GET['error'] . "</p></div>";
+    header("Refresh: 2; URL=index.php");
 }
 ?>
 </body>
