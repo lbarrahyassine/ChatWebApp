@@ -82,6 +82,16 @@ ul.user-list li {
     border-radius: 5px; 
     box-shadow: 0 0 10px rgba(0,0,0,0.1); 
 }
+.txtbox{
+    
+    width: 80%; 
+    margin: 0 auto; 
+    background-color: #fff; 
+    border: 1px solid #ddd; 
+    padding: 20px; 
+    border-radius: 5px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+}
 
 #textarea{
     box-sizing: border-box;

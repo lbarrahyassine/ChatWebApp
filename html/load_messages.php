@@ -7,8 +7,6 @@ session_start();
 include 'DB_connection.php';
 
 
-//echo "receiver id is ".$_SESSION['id2'];
-//echo "<br>my id is ".$_SESSION['id'];
 
 if (!isset($_SESSION['id2'])){
 
@@ -28,15 +26,13 @@ $sender_id = $_SESSION['id'];
     <title>Discussion</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
 </head>
 <body>
-
-<div class="discussion" id="discc">
+<div >
 <?php    
     // Get the messages between the current user and the selected user
 
-    $sql = "SELECT * FROM messages WHERE (destinateur = ? AND destinataire = ?) OR (destinateur = ? AND destinataire = ?) ";
+    $sql = "SELECT * FROM messages WHERE (destinateur = ? AND destinataire = ?) OR (destinateur = ? AND destinataire = ?) ORDER BY time	";
     $stmt = $conn->prepare($sql);
 
     $stmt->execute([$sender_id, $receiver_id, $receiver_id,$sender_id ]);
@@ -54,20 +50,9 @@ $sender_id = $_SESSION['id'];
     }
 $stmt=null;
 ?>
-<script src="chat.js"></script> 
-</div>
-<br>
-<div class="txtbox">
-    <form method="POST" action="send_mess.php" id="formid" enctype='multipart/form-data'>
-        <textarea id="textarea" name="message" placeholder="Type your message here..."></textarea><br>
-        <input id="sendmess" type="submit" name="sdmessage" value="Send Message">
-</form>  
+<script src="chat.js"></script>     
 </div>
 
 
-
-    
-    
-  
 </body>
 </html>
