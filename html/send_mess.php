@@ -31,4 +31,3 @@ if(isset($_POST['sdmessage'])){
     }
 }
 ?>
-<!--<script src="chat.js"></script> -->
