@@ -7,9 +7,11 @@
   <link rel='icon' src="./images/email.png">
   <link rel="stylesheet" href="style.css">
 
+</head>
+
 <body>
 
-  <div class="center"> 
+<div class="center"> 
 
   <p>signup</p> 
   <form name="createacc" action="" method="post" >
@@ -28,20 +30,21 @@
     <input type="email" name="email">
     <br>
    <input type="submit" name="submit" value="submit" >
+
   </form>
  
   <br>
    
-   
-<a href="index.php">login</a>
+  <a href="index.php">login</a>
 
-  </div>
+</div>
 
-  <?php 
+<?php 
 
 session_start(); 
 
 include "DB_connection.php";
+
 if (isset($_POST['submit']) ) {
 
     function validate($data){
@@ -53,39 +56,41 @@ if (isset($_POST['submit']) ) {
        $data = htmlspecialchars($data);
 
        return $data;
-
     }
-    $username = validate($_POST['username']);
 
+    $username = validate($_POST['username']);
     $pass = validate($_POST['password']);
     $email = validate($_POST['email']);
+
     if (empty($username)) {
 
-      header("Location: createacc.php?error=User Name is required");
+      header("Location: createacc.php?error=Username is required");
 
       exit();
 
-  }else if(empty($pass)){
+    }else if(empty($pass)){
 
       header("Location: createacc.php?error=Password is required");
 
       exit();
-  }else{
+
+    }else{
+
     $sql = "INSERT INTO users (username	, email, password) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sss", $username, $email, $pass);
 
     if($stmt->execute()){
         echo "account created successfully";
+        echo "You can login now ";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-
-
-  }
+    }
 }
-    ?>
+
+?>
   
 </body>
 

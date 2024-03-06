@@ -4,20 +4,17 @@ include 'DB_connection.php';
 session_start();    
 $sender_id=$_SESSION['id'];
 
-//$sql = "SELECT * FROM users"; 
 
     $sql = "SELECT * FROM users WHERE user_id != ?"; 
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $sender_id);
-    //$stmt = $conn->prepare("SELECT * FROM users ");
     $stmt->execute();
 
     $result = $stmt->get_result(); 
     $result=$result->fetch_all();
     //print_r($result);
 
-    
     
 ?>
 
@@ -41,18 +38,17 @@ $sender_id=$_SESSION['id'];
 
 <ul class="user-list">
     
-<?php 
-$_SESSION['id2']=null;
-foreach ($result as $row ){
-        echo" <li> <a href=discussion.php?id=".$row[0].">" . $row[1]." </a>      </li>";
-        
-    }
+    <?php 
+    $_SESSION['id2']=null;
+    foreach ($result as $row ){
+            echo" <li> <a href=discussion.php?id=".$row[0].">" . $row[1]." </a></li>";
+            
+        }
     ?>
-
 
 </ul>
 
 
-
 </body>
+
 </html>

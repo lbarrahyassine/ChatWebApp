@@ -1,8 +1,8 @@
 <?php 
 
 session_start(); 
-
 include_once "DB_connection.php";
+
 if (isset($_POST['username']) && isset($_POST['password'])) {
 
     function validate($data){
@@ -45,8 +45,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             if ($row['username'] === $username && $row['password'] === $pass) {
 
                 
-                
-
                 $_SESSION['username'] = $row['username'];
 
                 //$_SESSION['name'] = $row['username'];

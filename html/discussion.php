@@ -1,9 +1,6 @@
-
 <?php
 
 session_start();
-
-
 include 'DB_connection.php';
 
 
@@ -30,9 +27,11 @@ $sender_id = $_SESSION['id'];
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
 </head>
+
 <body>
 
 <div class="discussion" id="discc">
+
 <?php    
     // Get the messages between the current user and the selected user
 
@@ -54,20 +53,21 @@ $sender_id = $_SESSION['id'];
     }
 $stmt=null;
 ?>
-<script src="chat.js"></script> 
+
+
 </div>
+
 <br>
+
 <div class="txtbox">
     <form method="POST" action="send_mess.php" id="formid" enctype='multipart/form-data'>
         <textarea id="textarea" name="message" placeholder="Type your message here..."></textarea><br>
         <input id="sendmess" type="submit" name="sdmessage" value="Send Message">
-</form>  
+    </form>  
 </div>
 
 
-
-    
-    
-  
+<script src="chat.js"></script>
 </body>
+
 </html>

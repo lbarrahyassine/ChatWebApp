@@ -1,11 +1,7 @@
-
 <?php
 
 session_start();
-
-
 include 'DB_connection.php';
-
 
 
 if (!isset($_SESSION['id2'])){
@@ -27,14 +23,18 @@ $sender_id = $_SESSION['id'];
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
+
 <div >
+
 <?php    
-    // Get the messages between the current user and the selected user
+    // this is the same code of discussion.php 
+    // this is the code I want to refresh every 250ms or so
 
     $sql = "SELECT * FROM messages WHERE (destinateur = ? AND destinataire = ?) OR (destinateur = ? AND destinataire = ?) ORDER BY time	";
-    $stmt = $conn->prepare($sql);
 
+    $stmt = $conn->prepare($sql);
     $stmt->execute([$sender_id, $receiver_id, $receiver_id,$sender_id ]);
     $result = $stmt->get_result();
     
@@ -50,9 +50,12 @@ $sender_id = $_SESSION['id'];
     }
 $stmt=null;
 ?>
-<script src="chat.js"></script>     
+
+  
+
 </div>
 
 
 </body>
+
 </html>

@@ -9,9 +9,9 @@ include 'DB_connection.php';
 if(isset($_POST['sdmessage'])){
     
     $message = $_POST['message'];
-    //$message = $_POST['message'];
+    
 
-    // Print out the $_POST array
+    // Print the $_POST array
     //echo "<pre>";
     //print_r($_POST);
     //echo "</pre>";
@@ -27,9 +27,8 @@ if(isset($_POST['sdmessage'])){
         $sender_id = $_SESSION['id'];
     } else {
         echo "Error: Message insertion failed.";
-        // Print any SQL error
         echo "SQL Error: " . $stmt->error;
     }
 }
 ?>
-<script src="chat.js"></script> 
+<!--<script src="chat.js"></script> -->
