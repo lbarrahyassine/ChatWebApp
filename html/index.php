@@ -17,29 +17,31 @@
   <p>login</p> 
   <form name="loginform" action="login.php" method="post">
 
-    <label>Username</label>
-    <br>
+    <label>Username</label><br>
     <input type="text" name="username">
   
     <br>
   
-    <label>Password</label>
-    <br>
+    <label>Password</label><br>
     <input type="password" name="password">
 
-    <br>
-    <br>
-
-    <input id="login" type="submit" value="login" >
+    <br><br>
+    
+    <input id="login" name="submit" type="submit" value="login" >
   </form> 
 
   
 
-<a href="createacc.php">create an account</a>
-<br>
-<a href="forgot_password.html">forgot password</a>
+  <a href="createacc.php">Create an account</a>
+  <br>
+  <a href="forgot_password.html">forgot password</a>
 
 </div>
+
+
+</body>
+
+</html>
 
 <?php
 // if the user got an error during login, it disappears after 2 seconds 
@@ -48,7 +50,3 @@ if (isset($_GET['error'])) {
     header("Refresh: 2; URL=index.php");
 }
 ?>
-
-</body>
-
-</html>

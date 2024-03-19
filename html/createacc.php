@@ -47,6 +47,10 @@ include "DB_connection.php";
 
 if (isset($_POST['submit']) ) {
 
+    $username= filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+    $pass= filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+    $email= filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+
     function validate($data){
 
        $data = trim($data);
@@ -58,9 +62,9 @@ if (isset($_POST['submit']) ) {
        return $data;
     }
 
-    $username = validate($_POST['username']);
-    $pass = validate($_POST['password']);
-    $email = validate($_POST['email']);
+    $username = validate($username);
+    $pass = validate($pass);
+    $email = validate($email);
 
     if (empty($username)) {
 
@@ -76,13 +80,14 @@ if (isset($_POST['submit']) ) {
 
     }else{
 
+    $pass_hashed= password_hash($pass, PASSWORD_DEFAULT);
     $sql = "INSERT INTO users (username	, email, password) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $username, $email, $pass);
+    $stmt->bind_param("sss", $username, $email, $pass_hashed);
 
     if($stmt->execute()){
-        echo "account created successfully";
-        echo "You can login now ";
+        echo "<div class='error-message'>account created successfully <br> You can login now</div>";
+        
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

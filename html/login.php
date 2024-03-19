@@ -1,9 +1,13 @@
 <?php 
 
 session_start(); 
-include_once "DB_connection.php";
+include "DB_connection.php";
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset($_POST['submit']) && isset($_POST['username']) && isset($_POST['password'])) {
+
+    $username= filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+    $pass= filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
+    $email= filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
 
     function validate($data){
 
@@ -14,11 +18,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
        $data = htmlspecialchars($data);
 
        return $data;
-
     }
-    $username = validate($_POST['username']);
 
-    $pass = validate($_POST['password']);
+    $username = validate($username);
+    $pass = validate($pass);
+    //$email = validate($email);
 
     if (empty($username)) {
 
@@ -34,22 +38,20 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     }else{
 
-        $sql = "SELECT * FROM users WHERE username='$username' AND password='$pass'";
-
-        $result = mysqli_query($conn, $sql);
+        $sql = "SELECT * FROM users WHERE username= ?";
+        $sql = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($sql, "s", $username);
+        mysqli_stmt_execute($sql);
+        $result = mysqli_stmt_get_result($sql);
 
         if (mysqli_num_rows($result) === 1) {
 
             $row = mysqli_fetch_assoc($result);
 
-            if ($row['username'] === $username && $row['password'] === $pass) {
+                if (password_verify($pass, $row['password'])) {
 
-                
-                $_SESSION['username'] = $row['username'];
-
-                //$_SESSION['name'] = $row['username'];
-
-                $_SESSION['id'] = $row['user_id'];
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['id'] = $row['user_id'];
 
                 header("Location:home.php");
 
