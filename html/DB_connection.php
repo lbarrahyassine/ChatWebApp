@@ -1,6 +1,6 @@
 <?php
 
-$hostname= "chatapp";
+$hostname= "chatwebapp";
 
 $usname= "root";
 
